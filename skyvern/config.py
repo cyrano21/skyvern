@@ -105,6 +105,7 @@ class Settings(BaseSettings):
     ENABLE_AZURE_GPT4O_MINI: bool = False
     ENABLE_BEDROCK: bool = False
     ENABLE_GEMINI: bool = False
+    ENABLE_HUGGINGFACE: bool = False
     # OPENAI
     OPENAI_API_KEY: str | None = None
     # ANTHROPIC
@@ -123,6 +124,9 @@ class Settings(BaseSettings):
 
     # GEMINI
     GEMINI_API_KEY: str | None = None
+
+    # HUGGING FACE
+    HUGGINGFACE_API_KEY: str | None = None
 
     # TOTP Settings
     TOTP_LIFESPAN_MINUTES: int = 10

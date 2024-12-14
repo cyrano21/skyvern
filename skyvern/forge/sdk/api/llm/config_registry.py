@@ -52,6 +52,7 @@ if not any(
         settings.ENABLE_AZURE_GPT4O_MINI,
         settings.ENABLE_BEDROCK,
         settings.ENABLE_GEMINI,
+        settings.ENABLE_HUGGINGFACE,
     ]
 ):
     raise NoProviderEnabledError()
@@ -270,20 +271,23 @@ if settings.ENABLE_GEMINI:
     LLMConfigRegistry.register_config(
         "GEMINI_PRO",
         LLMConfig(
-            "gemini/gemini-1.5-pro",
-            ["GEMINI_API_KEY"],
-            supports_vision=True,
-            add_assistant_prefix=False,
-            max_output_tokens=8192,
+            "gemini-pro", ["GEMINI_API_KEY"], supports_vision=False, add_assistant_prefix=False
         ),
     )
     LLMConfigRegistry.register_config(
         "GEMINI_FLASH",
         LLMConfig(
-            "gemini/gemini-1.5-flash",
-            ["GEMINI_API_KEY"],
-            supports_vision=True,
-            add_assistant_prefix=False,
-            max_output_tokens=8192,
+            "gemini-pro", ["GEMINI_API_KEY"], supports_vision=False, add_assistant_prefix=False
+        ),
+    )
+
+if settings.ENABLE_HUGGINGFACE:
+    LLMConfigRegistry.register_config(
+        "huggingface/meta-llama/Llama-3.3-70B-Instruct",
+        LLMConfig(
+            "huggingface/meta-llama/Llama-3.3-70B-Instruct", 
+            ["HUGGINGFACE_API_KEY"], 
+            supports_vision=False, 
+            add_assistant_prefix=False
         ),
     )
